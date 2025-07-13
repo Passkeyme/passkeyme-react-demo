@@ -1,0 +1,150 @@
+/* Demo-specific styles */
+.demo-screen {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.demo-screen h2 {
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.demo-section {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.demo-section:last-child {
+  border-bottom: none;
+}
+
+.demo-section h3 {
+  color: #4b5563;
+  margin-bottom: 10px;
+}
+
+.demo-section h4 {
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.demo-action {
+  margin: 20px 0;
+}
+
+.user-info {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.user-info p {
+  margin: 4px 0;
+}
+
+.code-example {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.code-example h4 {
+  margin-top: 0;
+  color: #374151;
+}
+
+.code-example pre {
+  background-color: #1f2937;
+  color: #f9fafb;
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.info-box {
+  margin: 20px 0;
+}
+
+.info-box h4 {
+  margin-top: 0;
+  color: #1e40af;
+}
+
+.info-box ol {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.info-box li {
+  margin: 4px 0;
+}
+
+/* Button styles */
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.button.secondary {
+  background-color: #6b7280;
+  color: white;
+}
+
+.button.secondary:hover {
+  background-color: #4b5563;
+}
+
+/* Form styles */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 16px 0;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+}
