@@ -18,13 +18,13 @@ export function HostedModeDemo() {
     console.log("🚀 HostedModeDemo: Starting authentication...");
     triggerPasskeymeAuth({
       mode: "hosted", // explicit, but this is the default
-      onSuccess: (user, method) => {
+      onSuccess: (user: any, method: any) => {
         console.log(
           `✅ HostedModeDemo: Authentication successful via ${method}`,
           user
         );
       },
-      onError: (error) => {
+      onError: (error: any) => {
         console.error("❌ HostedModeDemo: Authentication failed:", error);
       },
     });
@@ -135,7 +135,7 @@ triggerPasskeymeAuth();
 // Explicit hosted mode with callbacks
 triggerPasskeymeAuth({
   mode: 'hosted',
-  onSuccess: (user, method) => {
+  onSuccess: (user: any, method: any) => {
     console.log('Success via', method);
   }
 });`}</pre>

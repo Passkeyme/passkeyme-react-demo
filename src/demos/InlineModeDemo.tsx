@@ -21,7 +21,7 @@ export function InlineModeDemo() {
     console.log("🚀 InlineModeDemo: Starting authentication...");
     triggerPasskeymeAuth({
       mode: "inline",
-      onOAuthRequired: (providers) => {
+      onOAuthRequired: (providers: any) => {
         console.log(
           "🔄 InlineModeDemo: OAuth required, showing providers:",
           providers
@@ -29,14 +29,14 @@ export function InlineModeDemo() {
         setAvailableProviders(providers);
         setShowOAuthOptions(true);
       },
-      onSuccess: (user, method) => {
+      onSuccess: (user: any, method: any) => {
         console.log(
           `✅ InlineModeDemo: Authentication successful via ${method}`,
           user
         );
         setShowOAuthOptions(false);
       },
-      onError: (error) => {
+      onError: (error: any) => {
         console.error("❌ InlineModeDemo: Authentication failed:", error);
         setShowOAuthOptions(false);
       },
@@ -173,11 +173,11 @@ const [showOAuth, setShowOAuth] = useState(false);
 const handleAuth = () => {
   triggerPasskeymeAuth({
     mode: 'inline',
-    onOAuthRequired: (providers) => {
+    onOAuthRequired: (providers: any) => {
       setProviders(providers);
       setShowOAuth(true);
     },
-    onSuccess: (user, method) => {
+    onSuccess: (user: any, method: any) => {
       setShowOAuth(false);
       console.log('Success via', method);
     }

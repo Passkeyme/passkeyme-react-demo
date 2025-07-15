@@ -79,7 +79,7 @@ export function ErrorHandlingDemo() {
         onSuccess: handleAuthSuccess,
         onError: handleAuthError,
         showNotifications: false, // We'll handle errors manually
-        onOAuthRequired: (providers) => {
+        onOAuthRequired: (providers: any) => {
           console.log("OAuth required, available providers:", providers);
         },
       });

@@ -262,7 +262,6 @@ export function LoadingStatesDemo() {
           onSuccess={handleAuthSuccess}
           onError={handleAuthError}
           showLoadingIndicator={showLoadingIndicator}
-          loadingTheme={loadingTheme}
           showProgress={true}
         >
           🔐 Login with Enhanced Loading States
