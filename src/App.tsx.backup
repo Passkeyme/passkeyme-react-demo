@@ -7,11 +7,11 @@ import "./demo-styles.css";
 
 // Configuration for your PasskeyMe instance
 const PASSKEYME_CONFIG = {
-  appId: import.meta.env.VITE_PASSKEYME_APP_ID || "your-app-id-here",
-  baseUrl: import.meta.env.VITE_PASSKEYME_BASE_URL || "https://passkeyme.com",
-  redirectUri: import.meta.env.VITE_PASSKEYME_REDIRECT_URI || "http://localhost:3000/callback",
-  debug: import.meta.env.VITE_DEBUG_MODE === "true" || true,
-  passkeyApiKey: import.meta.env.VITE_PASSKEYME_PASSKEY_API_KEY || "your-passkey-api-key",
+  appId: "816d4394-68f6-4bee-a074-2f7cc366de82",
+  baseUrl: "http://localhost",
+  redirectUri: "http://localhost:3001/callback",
+  debug: true,
+  passkeyApiKey: "ZkfXIW2ddEc5j4J6J9th1dtwvZG4HQ58",
   autoPromptPasskeyRegistration: true,
   enablePasskeyLogin: true,
 };

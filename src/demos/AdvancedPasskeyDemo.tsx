@@ -20,10 +20,10 @@ export function AdvancedPasskeyDemo() {
     triggerPasskeymeAuth({
       username: email || undefined,
       forcePasskeyOnly: true,
-      onSuccess: (user) => {
+      onSuccess: (user: any) => {
         alert(`Passkey success: Welcome ${user.name || user.email}!`);
       },
-      onError: (error) => {
+      onError: (error: any) => {
         alert(`Passkey failed: ${error}`);
       },
     });

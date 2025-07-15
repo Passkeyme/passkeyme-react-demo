@@ -3,12 +3,15 @@
  */
 
 import { useState } from "react";
-import { PasskeymeButton } from "../../../src/components/PasskeymeButton";
-import { PasskeymeOAuthButton } from "../../../src/components/PasskeymeOAuthButton";
-import { PasskeymeErrorDisplay } from "../../../src/components/PasskeymeErrorDisplay";
-import { PasskeymeLoadingIndicator } from "../../../src/components/PasskeymeLoadingIndicator";
-import { PasskeymeError, PasskeymeErrorCode } from "@passkeyme/auth";
-import { useLoadingState } from "../../../src/hooks/useLoadingState";
+import { 
+  PasskeymeButton,
+  PasskeymeOAuthButton,
+  PasskeymeErrorDisplay,
+  PasskeymeLoadingIndicator,
+  useLoadingState,
+  PasskeymeError,
+  PasskeymeErrorCode
+} from "@passkeyme/react-auth";
 
 export function AccessibilityDemo() {
   const [demoError, setDemoError] = useState<PasskeymeError | null>(null);

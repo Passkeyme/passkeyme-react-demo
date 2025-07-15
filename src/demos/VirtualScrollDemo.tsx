@@ -9,7 +9,7 @@ import {
   VirtualScrollList,
   useVirtualScrollList,
   type VirtualScrollItem,
-} from "../../../src/components/VirtualScrollList";
+} from "@passkeyme/react-auth";
 
 // Generate test data
 const generateItems = (start: number, count: number): VirtualScrollItem[] => {
