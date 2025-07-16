@@ -6,10 +6,21 @@ import { DemoNavigation } from "./DemoNavigation";
 import "./demo-styles.css";
 
 // Configuration for your PasskeyMe instance
+const getRedirectUri = () => {
+  // Use environment variable if set
+  if (import.meta.env.VITE_PASSKEYME_REDIRECT_URI) {
+    return import.meta.env.VITE_PASSKEYME_REDIRECT_URI;
+  }
+  
+  // Auto-detect based on current origin
+  const origin = window.location.origin;
+  return `${origin}/callback`;
+};
+
 const PASSKEYME_CONFIG = {
   appId: import.meta.env.VITE_PASSKEYME_APP_ID || "your-app-id-here",
   baseUrl: import.meta.env.VITE_PASSKEYME_BASE_URL || "https://passkeyme.com",
-  redirectUri: import.meta.env.VITE_PASSKEYME_REDIRECT_URI || "http://localhost:3000/callback",
+  redirectUri: getRedirectUri(),
   debug: import.meta.env.VITE_DEBUG_MODE === "true" || true,
   passkeyApiKey: import.meta.env.VITE_PASSKEYME_PASSKEY_API_KEY || "your-passkey-api-key",
   autoPromptPasskeyRegistration: true,

@@ -1,188 +1,315 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePasskeyme, PasskeymeButton } from "@passkeyme/react-auth";
-import { CodePreview } from "../components/CodePreview";
-import { ConfigEditor } from "../components/ConfigEditor";
-import { DebugConsole } from "../components/DebugConsole";
+import { DevToolsDashboard } from "../../../src/components/DevToolsDashboard";
+import {
+  devWarn,
+  devError,
+  validateProps,
+  withDevTools,
+  initDevTools,
+} from "../../../src/utils/devUtils";
 
 /**
- * Demo: Enhanced Developer Experience (DX)
- * Shows comprehensive debugging and development tools with code examples
+ * Demo: Developer Experience (DX) Enhancements
+ * Shows comprehensive debugging and development tools
  */
 export function DeveloperExperienceDemo() {
   const { user, isAuthenticated, logout } = usePasskeyme();
-  const [config, setConfig] = useState({
-    appId: "816d4394-68f6-4bee-a074-2f7cc366de82",
-    baseUrl: "http://localhost",
-    redirectUri: "http://localhost:3001/callback",
-    debug: true,
-    passkeyApiKey: "ZkfXIW2ddEc5j4J6J9th1dtwvZG4HQ58",
-    autoPromptPasskeyRegistration: true,
-    enablePasskeyLogin: true,
-  });
+  const [showDevDashboard, setShowDevDashboard] = useState(true);
+  const [consoleOutputs, setConsoleOutputs] = useState<string[]>([]);
 
-  const basicExample = `import { usePasskeyme, PasskeymeButton } from "@passkeyme/react-auth";
-
-function MyAuthComponent() {
-  const { user, isAuthenticated, logout } = usePasskeyme();
-
-  if (isAuthenticated && user) {
-    return (
-      <div>
-        <p>Welcome, {user.name || user.email}!</p>
-        <button onClick={logout}>Logout</button>
-      </div>
-    );
-  }
-
-  return (
-    <PasskeymeButton>
-      Sign in with Passkey
-    </PasskeymeButton>
-  );
-}`;
-
-  const providerExample = `import { PasskeymeProvider } from "@passkeyme/react-auth";
-
-const config = {
-  appId: "your-app-id",
-  baseUrl: "https://your-domain.com",
-  redirectUri: "https://your-domain.com/callback",
-  debug: process.env.NODE_ENV === 'development',
-  passkeyApiKey: "your-passkey-api-key",
-  autoPromptPasskeyRegistration: true,
-  enablePasskeyLogin: true,
-};
-
-function App() {
-  return (
-    <PasskeymeProvider config={config}>
-      <YourAppContent />
-    </PasskeymeProvider>
-  );
-}`;
+  // Initialize dev tools on component mount
+  useEffect(() => {
+    initDevTools();
+  }, []);
 
   if (isAuthenticated && user) {
     return (
       <div className="demo-screen">
-        <h2>🛠️ Developer Experience Dashboard</h2>
-        
-        <div className="dx-demo-layout">
-          <div className="dx-demo-main">
-            <div className="user-info">
-              <p><strong>Welcome:</strong> {user.name || user.email}</p>
-              <p><strong>Status:</strong> ✅ Successfully authenticated</p>
-              <p><strong>User ID:</strong> {user.id}</p>
-              <p><strong>Email:</strong> {user.email}</p>
-            </div>
-
-            <button onClick={logout} className="button secondary">
-              Logout to Test Again
-            </button>
-
-            <div className="demo-section">
-              <h3>🎯 Quick Integration Guide</h3>
-              <p>Here's how to integrate PasskeyMe into your React application:</p>
-              
-              <CodePreview 
-                code={providerExample}
-                title="1. Setup Provider (App.tsx)"
-                language="tsx"
-              />
-
-              <CodePreview 
-                code={basicExample}
-                title="2. Use Authentication Hook"
-                language="tsx"
-              />
-            </div>
-          </div>
-
-          <div className="dx-demo-sidebar">
-            <ConfigEditor 
-              config={config}
-              onChange={setConfig}
-              title="Live Configuration"
-            />
-            
-            <DebugConsole 
-              title="Real-time Debug Logs"
-              maxEntries={50}
-            />
-          </div>
+        <h2>🛠️ Developer Tools Active</h2>
+        <div className="user-info">
+          <p>
+            <strong>Welcome:</strong> {user.name || user.email}
+          </p>
+          <p>
+            <strong>Dev Mode:</strong> All development tools are active
+          </p>
         </div>
+        <button onClick={logout} className="button secondary">
+          Logout
+        </button>
+
+        {showDevDashboard && (
+          <DevToolsDashboard
+            show={true}
+            position="bottom-left"
+            collapsed={false}
+          />
+        )}
       </div>
     );
   }
 
+  const handleAuthSuccess = (_user: any, _method: string) => {
+    console.log("[PasskeyMe Dev] Authentication successful");
+  };
+
+  const handleAuthError = (error: string | any) => {
+    console.error("[PasskeyMe Dev] Authentication error:", error);
+  };
+
+  const testDevWarn = () => {
+    devWarn(true, "This is a development warning", { example: "data" });
+    setConsoleOutputs((prev) => [
+      ...prev,
+      `[WARN] ${new Date().toLocaleTimeString()}: Development warning triggered`,
+    ]);
+  };
+
+  const testDevError = () => {
+    devError(true, "This is a development error", { error: "test" });
+    setConsoleOutputs((prev) => [
+      ...prev,
+      `[ERROR] ${new Date().toLocaleTimeString()}: Development error triggered`,
+    ]);
+  };
+
+  const testPropValidation = () => {
+    // Simulate invalid props
+    const invalidProps = { name: "", age: -1, email: "invalid-email" };
+
+    validateProps("TestComponent", invalidProps, {
+      name: (value) => value?.length > 0 || "Name is required",
+      age: (value) => value >= 0 || "Age must be non-negative",
+      email: (value) => value.includes("@") || "Email must contain @",
+    });
+
+    setConsoleOutputs((prev) => [
+      ...prev,
+      `[VALIDATION] ${new Date().toLocaleTimeString()}: Prop validation executed`,
+    ]);
+  };
+
+  const testWithDevTools = () => {
+    console.log("[PasskeyMe Dev] Testing withDevTools wrapper");
+    setConsoleOutputs((prev) => [
+      ...prev,
+      `[DEV_TOOLS] ${new Date().toLocaleTimeString()}: withDevTools test executed`,
+    ]);
+  };
+
+  const clearConsoleOutputs = () => {
+    setConsoleOutputs([]);
+  };
+
+  // Example of enhanced component with dev tools
+  const EnhancedTestComponent = withDevTools(
+    ({ title, onClick }: { title: string; onClick: () => void }) => (
+      <button onClick={onClick} className="button secondary">
+        {title}
+      </button>
+    ),
+    "EnhancedTestComponent"
+  );
+
   return (
     <div className="demo-screen">
-      <h2>🛠️ Developer Experience Dashboard</h2>
-      <p className="demo-description">
-        This demo showcases enhanced developer tools including live configuration editing,
-        real-time debug console, and code examples to speed up your integration.
+      <h2>🛠️ Developer Experience (DX) Demo</h2>
+      <p>
+        Comprehensive debugging and development tools for enhanced productivity.
       </p>
 
-      <div className="dx-demo-layout">
-        <div className="dx-demo-main">
-          <div className="demo-section">
-            <h3>🔐 Try Authentication</h3>
-            <p>Click the button below to test the authentication flow with debug mode enabled:</p>
-            
-            <div className="demo-action">
-              <PasskeymeButton 
-                onSuccess={(user) => {
-                  console.log("🎉 Authentication successful!", user);
-                }}
-                onError={(error) => {
-                  console.error("❌ Authentication failed:", error);
-                }}
-              >
-                🔐 Sign in with Passkey
-              </PasskeymeButton>
+      <div className="demo-section">
+        <h3>🎯 DX Features Available:</h3>
+        <ul>
+          <li>✅ Real-time development dashboard with state inspection</li>
+          <li>✅ Enhanced console logging with PasskeyMe filtering</li>
+          <li>✅ Component prop validation helpers</li>
+          <li>✅ Development warnings and error helpers</li>
+          <li>✅ Hot reload support (React Fast Refresh)</li>
+          <li>✅ Component wrapper for debugging</li>
+          <li>✅ Browser console commands via window.__PASSKEYME_DEV__</li>
+          <li>✅ State export and debugging utilities</li>
+        </ul>
+      </div>
+
+      {/* Development Dashboard */}
+      <div className="demo-section">
+        <h3>🔍 Development Dashboard:</h3>
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            alignItems: "center",
+            marginBottom: "16px",
+          }}
+        >
+          <label style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <input
+              type="checkbox"
+              checked={showDevDashboard}
+              onChange={(e) => setShowDevDashboard(e.target.checked)}
+            />
+            Show Development Dashboard
+          </label>
+        </div>
+
+        {showDevDashboard && (
+          <div className="info-box">
+            <strong>Dashboard Active:</strong> Check the bottom-left corner for
+            the floating development dashboard. It provides real-time state
+            inspection, logs, and debugging tools.
+          </div>
+        )}
+      </div>
+
+      {/* Console Commands */}
+      <div className="demo-section">
+        <h3>💻 Browser Console Commands:</h3>
+        <div className="code-example">
+          <pre>{`// Open browser console and try these commands:
+window.__PASSKEYME_DEV__.showState()      // Show current auth state
+window.__PASSKEYME_DEV__.resetAuth()      // Reset authentication
+window.__PASSKEYME_DEV__.enableDebug()    // Enable debug mode
+window.__PASSKEYME_DEV__.disableDebug()   // Disable debug mode`}</pre>
+        </div>
+      </div>
+
+      {/* Development Testing Tools */}
+      <div className="demo-section">
+        <h3>🧪 Development Testing Tools:</h3>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "12px",
+            marginBottom: "16px",
+          }}
+        >
+          <button onClick={testDevWarn} className="button secondary">
+            Test Dev Warning
+          </button>
+          <button onClick={testDevError} className="button secondary">
+            Test Dev Error
+          </button>
+          <button onClick={testPropValidation} className="button secondary">
+            Test Prop Validation
+          </button>
+          <button onClick={testWithDevTools} className="button secondary">
+            Test withDevTools
+          </button>
+        </div>
+
+        <div style={{ marginBottom: "16px" }}>
+          <EnhancedTestComponent
+            title="Enhanced Component (with DevTools)"
+            onClick={() =>
+              console.log("[PasskeyMe Dev] Enhanced component clicked")
+            }
+          />
+        </div>
+
+        {consoleOutputs.length > 0 && (
+          <div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "8px",
+              }}
+            >
+              <strong>Console Output Preview:</strong>
+              <button onClick={clearConsoleOutputs} className="button outline">
+                Clear
+              </button>
+            </div>
+            <div
+              style={{
+                backgroundColor: "#1e1e1e",
+                color: "#00ff00",
+                padding: "12px",
+                borderRadius: "6px",
+                fontFamily: "monospace",
+                fontSize: "12px",
+                maxHeight: "150px",
+                overflow: "auto",
+              }}
+            >
+              {consoleOutputs.map((output, index) => (
+                <div key={index}>{output}</div>
+              ))}
             </div>
           </div>
+        )}
+      </div>
 
-          <div className="demo-section">
-            <h3>📋 Integration Examples</h3>
-            
-            <CodePreview 
-              code={providerExample}
-              title="Setup PasskeyMe Provider"
-              language="tsx"
-            />
+      {/* Authentication with Dev Tools */}
+      <div className="demo-action">
+        <h3>🔐 Authentication with Developer Tools:</h3>
+        <PasskeymeButton
+          onSuccess={handleAuthSuccess}
+          onError={handleAuthError}
+          showLoadingIndicator={true}
+          showProgress={true}
+        >
+          Login with Enhanced Dev Tools
+        </PasskeymeButton>
+      </div>
 
-            <CodePreview 
-              code={basicExample}
-              title="Basic Authentication Component"
-              language="tsx"
-            />
-          </div>
+      {/* Code Examples */}
+      <div className="code-example">
+        <h4>Developer Tools Code Examples:</h4>
+        <pre>{`import { 
+  devWarn, 
+  devError, 
+  validateProps, 
+  withDevTools,
+  initDevTools 
+} from '@passkeyme/react-auth';
 
-          <div className="demo-section">
-            <h3>🚀 Development Tips</h3>
-            <ul>
-              <li><strong>Debug Mode:</strong> Enable debug in config to see detailed logs</li>
-              <li><strong>Console Monitoring:</strong> Watch the debug console for real-time feedback</li>
-              <li><strong>Configuration Testing:</strong> Modify config in real-time to test different scenarios</li>
-              <li><strong>Error Handling:</strong> Use onSuccess and onError callbacks for custom handling</li>
-            </ul>
-          </div>
-        </div>
+// Initialize development tools
+initDevTools();
 
-        <div className="dx-demo-sidebar">
-          <ConfigEditor 
-            config={config}
-            onChange={setConfig}
-            title="Live Configuration Editor"
-          />
-          
-          <DebugConsole 
-            title="Real-time Debug Console"
-            maxEntries={50}
-          />
-        </div>
+// Development warnings (only in dev mode)
+devWarn(condition, 'Warning message', extraData);
+devError(condition, 'Error message', extraData);
+
+// Prop validation
+validateProps('MyComponent', props, {
+  name: (value) => value?.length > 0 || 'Name is required',
+  email: (value) => value.includes('@') || 'Invalid email'
+});
+
+// Enhanced component with debugging
+const MyComponent = withDevTools(
+  ({ title }) => <h1>{title}</h1>,
+  'MyComponent'
+);
+
+// Development dashboard
+<DevToolsDashboard 
+  show={true} 
+  position="bottom-right"
+  collapsed={false}
+/>`}</pre>
+      </div>
+
+      {/* Dashboard */}
+      {showDevDashboard && (
+        <DevToolsDashboard
+          show={true}
+          position="bottom-left"
+          collapsed={false}
+        />
+      )}
+
+      <div className="info-box">
+        <strong>Development Mode:</strong> All development tools are active.
+        Check the browser console for enhanced logging and use the floating
+        dashboard for real-time debugging.
       </div>
     </div>
   );
 }
-
