@@ -50,7 +50,7 @@ npm install && npm run dev
 - **Hosted Authentication** - Redirect to PasskeyMe's hosted auth page
 - **Inline OAuth** - Embedded social login (Google, GitHub, Apple, etc.)
 - **Passkey Registration** - WebAuthn biometric enrollment
-- **Passkey Authentication** - Passwordless login with Touch ID/Face ID
+- **Passkey Authentication** - Passwordless login with Touch ID/Face ID.
 
 ### Developer Experience
 - **Live Code Preview** - See source code alongside demos
