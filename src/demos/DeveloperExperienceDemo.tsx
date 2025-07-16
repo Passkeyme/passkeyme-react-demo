@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import { usePasskeyme, PasskeymeButton } from "@passkeyme/react-auth";
-import { DevToolsDashboard } from "../../../src/components/DevToolsDashboard";
-import {
+import { 
+  usePasskeyme, 
+  PasskeymeButton,
+  DevToolsDashboard,
   devWarn,
   devError,
   validateProps,
   withDevTools,
   initDevTools,
-} from "../../../src/utils/devUtils";
+} from "@passkeyme/react-auth";
 
 /**
  * Demo: Developer Experience (DX) Enhancements
@@ -79,9 +80,9 @@ export function DeveloperExperienceDemo() {
     const invalidProps = { name: "", age: -1, email: "invalid-email" };
 
     validateProps("TestComponent", invalidProps, {
-      name: (value) => value?.length > 0 || "Name is required",
-      age: (value) => value >= 0 || "Age must be non-negative",
-      email: (value) => value.includes("@") || "Email must contain @",
+      name: (value: any) => value?.length > 0 || "Name is required",
+      age: (value: any) => value >= 0 || "Age must be non-negative",
+      email: (value: any) => value.includes("@") || "Email must contain @",
     });
 
     setConsoleOutputs((prev) => [
