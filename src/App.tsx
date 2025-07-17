@@ -21,7 +21,7 @@ const PASSKEYME_CONFIG = {
   appId: import.meta.env.VITE_PASSKEYME_APP_ID || "your-app-id-here",
   baseUrl: import.meta.env.VITE_PASSKEYME_BASE_URL || "https://passkeyme.com",
   redirectUri: getRedirectUri(),
-  debug: true,
+  debug: true, // Enable debug logging to troubleshoot smart login
   passkeyApiKey: import.meta.env.VITE_PASSKEYME_PASSKEY_API_KEY || "your-passkey-api-key",
   autoPromptPasskeyRegistration: true,
   enablePasskeyLogin: true,
