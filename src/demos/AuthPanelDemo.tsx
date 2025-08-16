@@ -469,7 +469,7 @@ export function AuthPanelDemo() {
         )}
         <div style={{ position: "relative", zIndex: 1 }}>
           <PasskeymeAuthPanel
-            providers={["google", "github"]}
+            providers={["google", "github", "facebook"]}
             enablePasskeys={enablePasskeys}
             layout={selectedLayout}
             spacing="normal"
@@ -514,7 +514,7 @@ export function AuthPanelDemo() {
           }}
         >
           {`<PasskeymeAuthPanel
-  providers={['google', 'github']}
+  providers={['google', 'github', 'facebook']}
   layout="${selectedLayout}"
   enablePasskeys={${enablePasskeys}}
   debugMode={${debugMode}}
@@ -558,7 +558,7 @@ export function AuthPanelDemo() {
               }}
             >
               {`<PasskeymeAuthPanel
-  providers={['google', 'github']}
+  providers={['google', 'github', 'facebook']}
   onSuccess={(user) => navigate('/dashboard')}
 />`}
             </pre>
@@ -575,7 +575,7 @@ export function AuthPanelDemo() {
               }}
             >
               {`<PasskeymeAuthPanel
-  providers={['google', 'github', 'apple']}
+  providers={['google', 'github', 'apple', 'facebook']}
   layout="horizontal"
   spacing="relaxed"
   theme={{
