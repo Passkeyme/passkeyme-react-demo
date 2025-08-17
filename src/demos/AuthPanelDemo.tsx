@@ -469,7 +469,7 @@ export function AuthPanelDemo() {
         )}
         <div style={{ position: "relative", zIndex: 1 }}>
           <PasskeymeAuthPanel
-            providers={["google", "github", "facebook"]}
+            providers={["google", "github", "facebook", "apple"]}
             enablePasskeys={enablePasskeys}
             layout={selectedLayout}
             spacing="normal"
