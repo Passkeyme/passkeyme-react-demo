@@ -5,7 +5,7 @@ import {
 import { DemoNavigation } from "./DemoNavigation";
 import "./demo-styles.css";
 
-// Configuration for your PasskeyMe instance
+// Configuration for your Passkeyme instance
 const getRedirectUri = () => {
   // Use environment variable if set
   if (import.meta.env.VITE_PASSKEYME_REDIRECT_URI) {
