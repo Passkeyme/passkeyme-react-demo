@@ -37,7 +37,7 @@ console.log(
   import("@passkeyme/react-auth/package.json")
 );
 
-console.log("PASSKEYME_CONFIG:", PASSKEYME_CONFIG);
+console.log("PASSKEYME_CONFIG :", PASSKEYME_CONFIG);
 
 // Main App component with routing
 function AppContent() {
