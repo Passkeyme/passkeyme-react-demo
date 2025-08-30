@@ -41,7 +41,7 @@
     "lint:fix": "eslint src --ext ts,tsx --fix",
     "use-local": "npm install file:../core file:../react",
     "use-published": "npm install @passkeyme/auth@latest @passkeyme/react-auth@latest && echo '✅ Switched to published packages:' && npm list @passkeyme/auth @passkeyme/react-auth --depth=1 || true",
-    "show-versions": "echo '📦 SDK Versions in use:' && npm list @passkeyme/auth @passkeyme/react-auth --depth=0 || true"
+    "show-versions": "echo '📦 SDK Versions in use:' && npm list @passkeyme/auth @passkeyme/react-auth --depth=1 || true"
   },
   "dependencies": {
     "@passkeyme/auth": "file:~/dev/passkeys/passkeyme/sdk/core",
