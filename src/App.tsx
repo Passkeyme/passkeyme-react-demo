@@ -30,6 +30,18 @@ const PASSKEYME_CONFIG = {
   enablePasskeyLogin: true,
 };
 
+console.log("📦 SDK Versions in use:");
+console.log(
+  " - @passkeyme/auth:",
+  require("@passkeyme/auth/package.json").version
+);
+console.log(
+  " - @passkeyme/react-auth:",
+  require("@passkeyme/react-auth/package.json").version
+);
+
+console.log("PASSKEYME_CONFIG:", PASSKEYME_CONFIG);
+
 // Main App component with routing
 function AppContent() {
   // Simple client-side routing based on pathname
