@@ -30,7 +30,7 @@ const PASSKEYME_CONFIG = {
   enablePasskeyLogin: true,
 };
 
-console.log("PASSKEYME_CONFIG ", PASSKEYME_CONFIG);
+console.log("PASSKEYME_CONFIG: ", PASSKEYME_CONFIG);
 
 // Main App component with routing
 function AppContent() {
