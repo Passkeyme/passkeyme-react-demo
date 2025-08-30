@@ -39,8 +39,8 @@
     "lint:fix": "eslint src --ext ts,tsx --fix"
   },
   "dependencies": {
-    "@passkeyme/auth": "1.3.0",
-    "@passkeyme/react-auth": "1.3.0",
+    "@passkeyme/auth": "2.0.1",
+    "@passkeyme/react-auth": "2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "lucide-react": "^0.263.1"

@@ -1,6 +1,6 @@
 import {
-  PasskeymeProvider,
   PasskeymeCallbackHandler,
+  PasskeymeProvider,
 } from "@passkeyme/react-auth";
 import { DemoNavigation } from "./DemoNavigation";
 import "./demo-styles.css";
@@ -11,7 +11,7 @@ const getRedirectUri = () => {
   if (import.meta.env.VITE_PASSKEYME_REDIRECT_URI) {
     return import.meta.env.VITE_PASSKEYME_REDIRECT_URI;
   }
-  
+
   // Auto-detect based on current origin
   const origin = window.location.origin;
   return `${origin}/callback`;
@@ -19,11 +19,13 @@ const getRedirectUri = () => {
 
 const PASSKEYME_CONFIG = {
   appId: import.meta.env.VITE_PASSKEYME_APP_ID || "your-app-id-here",
-  // baseUrl: import.meta.env.VITE_PASSKEYME_BASE_URL || "https://auth.passkeyme.com",
-  // apiUrl: import.meta.env.VITE_PASSKEYME_API_URL || "https://api.passkeyme.com",
+  baseUrl:
+    import.meta.env.VITE_PASSKEYME_BASE_URL || "https://auth.passkeyme.com",
+  apiUrl: import.meta.env.VITE_PASSKEYME_API_URL || "https://api.passkeyme.com",
   redirectUri: getRedirectUri(),
   debug: import.meta.env.VITE_DEBUG_MODE === "true", // Enable debug logging to troubleshoot smart login
-  passkeyApiKey: import.meta.env.VITE_PASSKEYME_PASSKEY_API_KEY || "your-passkey-api-key",
+  passkeyApiKey:
+    import.meta.env.VITE_PASSKEYME_PASSKEY_API_KEY || "your-passkey-api-key",
   autoPromptPasskeyRegistration: true,
   enablePasskeyLogin: true,
 };
