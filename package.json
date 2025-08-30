@@ -40,7 +40,7 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext ts,tsx --fix",
     "use-local": "npm install file:../core file:../react",
-    "use-published": "npm install @passkeyme/auth@2.0.1 @passkeyme/react-auth@2.0.1"
+    "use-published": "npm install @passkeyme/auth@latest @passkeyme/react-auth@latest"
   },
   "dependencies": {
     "@passkeyme/auth": "file:/Users/justincrosbie/dev/passkeys/passkeyme/sdk/core",
