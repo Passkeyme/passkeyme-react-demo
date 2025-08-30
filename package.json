@@ -30,17 +30,21 @@
   },
   "scripts": {
     "dev": "vite --port 3000",
-    "build": "tsc && vite build",
+    "dev:local": "npm run use-local && vite --port 3000",
+    "dev:published": "npm run use-published && vite --port 3000",
+    "build": "npm run use-published && tsc && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint src --ext ts,tsx --fix"
+    "lint:fix": "eslint src --ext ts,tsx --fix",
+    "use-local": "npm install file:../core file:../react",
+    "use-published": "npm install @passkeyme/auth@2.0.1 @passkeyme/react-auth@2.0.1"
   },
   "dependencies": {
-    "@passkeyme/auth": "2.0.1",
-    "@passkeyme/react-auth": "2.0.1",
+    "@passkeyme/auth": "file:/Users/justincrosbie/dev/passkeys/passkeyme/sdk/core",
+    "@passkeyme/react-auth": "file:/Users/justincrosbie/dev/passkeys/passkeyme/sdk/react",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "lucide-react": "^0.263.1"
