@@ -31,13 +31,10 @@ const PASSKEYME_CONFIG = {
 };
 
 console.log("📦 SDK Versions in use:");
-console.log(
-  " - @passkeyme/auth:",
-  require("@passkeyme/auth/package.json").version
-);
+console.log(" - @passkeyme/auth:", import("@passkeyme/auth/package.json"));
 console.log(
   " - @passkeyme/react-auth:",
-  require("@passkeyme/react-auth/package.json").version
+  import("@passkeyme/react-auth/package.json")
 );
 
 console.log("PASSKEYME_CONFIG:", PASSKEYME_CONFIG);
