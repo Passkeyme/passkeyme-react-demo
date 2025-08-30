@@ -31,12 +31,14 @@ const PASSKEYME_CONFIG = {
 };
 
 console.log("📦 SDK Versions in use:");
-console.log(" - @passkeyme/auth:", import("@passkeyme/auth/package.json"));
+console.log(
+  " - @passkeyme/auth:",
+  await import("@passkeyme/auth/package.json").then(pkg => pkg.version)
+);
 console.log(
   " - @passkeyme/react-auth:",
-  import("@passkeyme/react-auth/package.json")
+  await import("@passkeyme/react-auth/package.json").then(pkg => pkg.version)
 );
-
 console.log("PASSKEYME_CONFIG :", PASSKEYME_CONFIG);
 
 // Main App component with routing
