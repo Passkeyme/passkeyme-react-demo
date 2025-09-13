@@ -1,7 +1,7 @@
 {
   "name": "passkeyme-react-demo",
   "version": "1.0.0",
-  "description": "PasskeyMe React SDK Demo - Showcase of authentication components and hooks",
+  "description": "Passkeyme React SDK Demo - Showcase of authentication components and hooks",
   "type": "module",
   "private": false,
   "keywords": [
@@ -24,7 +24,7 @@
   },
   "license": "MIT",
   "author": {
-    "name": "PasskeyMe",
+    "name": "Passkeyme",
     "email": "hello@passkeyme.com",
     "url": "https://passkeyme.com"
   },
